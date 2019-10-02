@@ -1,16 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 
 const router = require('./router');
 
-mongoose.connect('mongodb+srv://week6:week6@cluster0-pvlax.mongodb.net/aircnc?retryWrites=true&w=majority',
-{
+mongoose.connect(
+  'mongodb+srv://week6:week6@cluster0-pvlax.mongodb.net/aircnc?retryWrites=true&w=majority',
+  {
     useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+    useUnifiedTopology: true,
+  }
+);
 
 const app = express();
 
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(router);
 
